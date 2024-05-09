@@ -1,6 +1,8 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
 
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -39,52 +41,16 @@ Util.buildpage = async function (vehicle) {
   return html
 }
 
-/* **************************************
-* Build the classification view HTML
-* ************************************ */
-Util.buildClassificationGrid = async function(data){
-  let grid
-  if(data.length > 0){
-    grid = '<ul id="inv-display">'
-    data.forEach(vehicle => { 
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
-    })
-    grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
-  }
-  return grid
+
+function handleErrors(fn) {
+  return function (req, res, next) {
+    try {
+      fn(req, res, next).catch(next);
+    } catch (e) {
+      next(e);
+    }
+  };
 }
 
-Util.buildClassDropDown = async function (classification_id = null) {
-  let data = await invModel.getClassifications()
-  let list = "<select id='classification_id' name='classification_id'>"
-  list += "<option>Choose a Classification</option>"
-      data.rows.forEach((row) => {
-      list += "<option value='" + row.classification_id +"'"
-          if (classification_id != null && row.classification_id == classification_id) {
-              list += " selected "
-      }
-      list += ">" + row.classification_name + "</option>"
-  })
-  list += '</select>'
-  return list
-}
 
-module.exports = Util
+module.exports = { Util,invModel, handleErrors };

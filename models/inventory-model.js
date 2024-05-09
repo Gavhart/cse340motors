@@ -1,3 +1,12 @@
+const pool = require("../database/")
+
+/* ***************************
+ *  Get all classification data
+ * ************************** */
+async function getClassifications(){
+  return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+}
+
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
@@ -15,5 +24,5 @@ async function getInventoryByClassificationId(classification_id) {
     console.error("getclassificationsbyid error " + error)
   }
 }
+  
 module.exports = {getClassifications, getInventoryByClassificationId};
-
