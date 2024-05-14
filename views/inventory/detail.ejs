@@ -1,3 +1,4 @@
+
 <!-- Dynamically building the view for individual vehicles -->
 <link href= "/public/css/styles.css" rel="stylesheet" type="text/css" />
 
@@ -19,26 +20,26 @@
 
 <ul id="vehicle-display">
   <div class="vehicleImages">
-    <img src="<%= data.rows[0].inv_image %>" alt = "Image of <%= data.rows[0].inv_make %> <%= data.rows[0].inv_model %> on CSE Motors" class = "vehicleImage"/>
+    <img src="<%= data.inv_image %>" alt = "Image of <%= data.inv_make %> <%= data.inv_model %> on CSE Motors" class = "vehicleImage"/>
   </div>
 
-  <h2><%=data.rows[0].inv_make + " " + data.rows[0].inv_model%> Details</h2>
+  <h2><%=data.inv_make + " " + data.inv_model%> Details</h2>
 
   <hr/>
 
-  <h4> Price: $<%=data.rows[0].inv_price%></h4>
+  <h4> Price: $<%=data.inv_price%></h4>
   <h4>Description:</h4>
-  <p><%=data.rows[0].inv_description%></p>
+  <p><%=data.inv_description%></p>
 
   <hr/>
 
   <h4>Color:</h4>
-  <p><%=data.rows[0].inv_color%></p>
+  <p><%=data.inv_color%></p>
 
   <hr/>
 
   <h4>Miles:</h4>
-  <p><%=data.rows[0].inv_miles%></p>
+  <p><%=data.inv_miles%></p>
 
   <hr/>
 </ul>

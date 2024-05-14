@@ -7,7 +7,7 @@
 
 /* 1.2 Universal Styles */
 html {
-  font-size: 72.5%;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 body {
@@ -212,6 +212,250 @@ textarea {
 }
 .back_link:hover {
   color: #DEB887;
+}
+h4 {
+  margin: 2rem 0;
+  size: 2rem;
+}
+
+/* *********************
+* Client Account Pages 
+***********************/
+.login {
+  width: 50vw;
+  padding: 20px 0 0 0;
+  text-align: center;
+}
+.login h1 {
+  font-weight: normal;
+  text-align: center;
+}
+.login form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login label {
+  margin: 4px 0px 20px 0px;
+}
+.login input {
+  font-size: 1.2rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.login_submit {
+  background-color: #1c73bf;
+  color: #fff;
+  width: 40%;
+}
+.login_submit:hover {
+  background-color: #1d56a1;
+  cursor: pointer;
+}
+.login_pass_note {
+  display: block;
+  font-size: 0.8rem;
+  color: #606060;
+  line-height: 1.2;
+  margin: 8px 20px;
+  text-align: justify;
+}
+.create_account {
+  background-color: #eee;
+  padding: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.register_submit {
+  background-color: #006600;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.register_submit:hover {
+  background-color: #449944;
+}
+.client-update form label input {
+  display: block;
+  font-size: 1.2rem;
+  padding: 4px;
+}
+.client-update form label {
+  display: block;
+  margin: 1rem 0;
+}
+.client-update_button {
+  background-color: #4c96d7;
+  color: #000;
+  max-width: 300px;
+  align-self: center;
+  text-decoration: none;
+}
+.client-update_button:hover {
+  background-color: #8d8d8d;
+  color: #000;
+}
+.update-password_button,
+.update-client_button {
+  background-color: #19ae19;
+  color: #000;
+  max-width: 300px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
+.update-password_button {
+  background-color: #366fba;
+}
+
+#reviews-admin {
+  border-top: 1px solid #888;
+  margin-top: 40px;
+}
+#admin_review-section th {
+  background-color: #ddd;
+}
+#admin_review-section td {
+  padding: 8px 4px;
+}
+.editor img {
+  width: 20px;
+}
+
+/* *****************************
+* Vehicle Detail Pages
+*******************************/
+.vehicle-card {
+  display: flex;
+  flex-flow: column;
+}
+
+#vehicle-image {
+  order: 1;
+}
+#vehicle-price {
+  font-weight: bold;
+  padding: 40px 0px;
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  background-color: #dbe8f3;
+}
+#price {
+  margin-left: 40px;
+}
+
+.thumbnails {
+  order: 2;
+}
+#reviews {
+  order: 3;
+  border-top: 1px solid #888;
+  margin-top: 20px;
+}
+
+#vehicle-image img {
+  width: 100%;
+}
+.vehicle-info {
+  order: 3;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+}
+.vehicle-info p {
+  padding: 8px;
+}
+.thumb-image {
+  margin: 4px;
+}
+.colored {
+  background-color: #ccc;
+}
+#screen-name {
+  padding: 0px;
+  margin: 8px 0px;
+  font-size: 0.8rem;
+}
+#screen-name span {
+  background-color: #ddd;
+  padding: 4px;
+}
+#reviews label {
+  display: block;
+}
+#reviewText {
+  width: 80%;
+  height: 120px;
+}
+.submit-review_button {
+  font-size: 1.4rem;
+  background-color: #19ae19;
+}
+.submit-review_button:hover {
+  background-color: #99df99;
+}
+
+#review-section {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+}
+.review-item {
+  margin: 10px;
+  margin-bottom: 20px;
+  background: rgb(255, 250, 230);
+  border-radius: 8px;
+  padding: 4px;
+}
+.review-auth {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0px;
+}
+.review-date {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0px;
+}
+
+/* *****************************
+* Vehicle Detail Pages
+*******************************/
+#uploads-form fieldset {
+  margin: 20px;
+}
+.vehicle-select {
+  display: block;
+  font-size: 1.2rem;
+  padding: 4px;
+  margin: 20px;
+}
+#file-upload_field input {
+  border-color: red;
+}
+input[type="file"] {
+  display: block;
+  font-size: 1.2rem;
+  color: #888;
+  padding: 4px;
+}
+.file-button {
+  color: #fff;
+  background-color: #009000;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #3a3a3a;
+}
+.file-button:hover {
+  color: #3a3a3a;
+}
+#image-display {
+  display: flex;
+  flex-flow: row wrap;
+}
+#image-display img {
+  max-width: 75vw;
 }
 
 
