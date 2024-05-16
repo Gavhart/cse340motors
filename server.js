@@ -46,7 +46,7 @@ const session = require("express-session")
 
 
 
-// Body Parser Middleware
+// Body Parser 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -67,7 +67,7 @@ app.use(utilities.handleErrors(static))
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Account login
-// app.use("/account/", utilities.handleErrors(accountRoute))
+//app.use("/account/", utilities.handleErrors(accountRoute))
 
 // Inventory route
 app.use("/inv/", utilities.handleErrors(inventoryRoute))
