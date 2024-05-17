@@ -12,9 +12,9 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-//const accountRoute = require("./routes/accountrouteroutes")
+// const accountRoute = require("./routes/accountrouteroutes")
 const utilities = require("./utilities")
-//const session = require("express-session")
+// const session = require("express-session")
 const pool = require("./database")
 const bodyParser = require("body-parser")
 const session = require("express-session")
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") 
+app.set("layout", "./layouts/layout") // not at views root
 
 /* ***********************
  * Routes
@@ -92,7 +92,7 @@ app.use(async (err, req, res, next) => {
   }
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    message: err.message,
+    // message: err.message,
     message,
     nav
   })
