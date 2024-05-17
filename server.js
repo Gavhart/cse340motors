@@ -12,9 +12,9 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-// const accountRoute = require("./routes/accountrouteroutes")
+//const accountRoute = require("./routes/accountrouteroutes")
 const utilities = require("./utilities")
-// const session = require("express-session")
+//const session = require("express-session")
 const pool = require("./database")
 const bodyParser = require("body-parser")
 const session = require("express-session")
@@ -26,23 +26,23 @@ const session = require("express-session")
 /* ***********************
  * Middleware
  * ************************/
-// app.use(session({
-//   store: new (require('connect-pg-simple')(session))({
-//     createTableIfMissing: true,
-//     pool,
-//   }),
-//   secret: process.env.SESSION_SECRET,
-//   resave: true,
-//   saveUninitialized: true,
-//   name: 'sessionId',
-// }))
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
 
 // Express Messages Middleware
-// app.use(require('connect-flash')())
-// app.use(function(req, res, next){
-//   res.locals.messages = require('express-messages')(req, res)
-//   next()
-// })
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 
 
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout") 
 
 /* ***********************
  * Routes
@@ -92,7 +92,7 @@ app.use(async (err, req, res, next) => {
   }
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    // message: err.message,
+    message: err.message,
     message,
     nav
   })
@@ -108,6 +108,6 @@ const host = process.env.HOST
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, host, () => {
+app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
