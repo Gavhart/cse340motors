@@ -532,6 +532,73 @@ input[type="file"] {
   font-size: 0.9rem; /* Smaller font size for the forgot password link */
 }
 
+/* *****************************
+* Register Page
+*******************************/
+/* Basic styling for the form */
+.login-form {
+  max-width: 500px; /* Limit the width of the form */
+  margin: 2rem auto; /* Center the form horizontally and add vertical spacing */
+  padding: 20px; /* Padding inside the form */
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: Arial, sans-serif; /* Font styling */
+}
+
+/* Styling labels for better readability */
+.login-form label {
+  display: block; /* Make labels block for full width */
+  margin-bottom: 10px; /* Space below each label */
+  color: #333; /* Dark gray color for text */
+  font-size: 1rem; /* Readable font size */
+}
+
+/* Styling inputs for a consistent look */
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 10px; /* Padding inside input fields */
+  margin-bottom: 15px; /* Space below each input */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners for inputs */
+}
+
+/* Highlighting input fields on focus to improve user experience */
+.login-form input[type="text"]:focus,
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #5c67f2; /* Change border color to blue when focused */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Styling the submission button to stand out */
+.submitBtn {
+  width: 100%; /* Full width button */
+  padding: 12px; /* Padding for a larger clickable area */
+  background-color: #5c67f2; /* Blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1rem; /* Font size */
+}
+
+/* Hover effect for the button for interactivity */
+.submitBtn:hover {
+  background-color: #5058e5; /* A slightly darker blue on hover */
+}
+
+/* Styling the password requirement note for clarity */
+.login-form p {
+  font-size: 0.8rem; /* Smaller font size */
+  color: #666; /* Medium gray */
+  padding: 5px 0; /* Padding around the text */
+  line-height: 1.4; /* Line height for better readability */
+}
+
+
 
 
 
