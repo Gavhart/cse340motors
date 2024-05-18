@@ -26,7 +26,6 @@ invCont.buildByInventoryId = async function (req, res,next) {
   try {
       const inv_id = req.params.inv_id;
       const vehicleData = await invModel.getVehicleByInventoryId(inv_id);
-
       const grid = await utilities.buildInventoryGrid(vehicleData);
 
       let nav = await utilities.getNav();
@@ -43,6 +42,49 @@ invCont.buildByInventoryId = async function (req, res,next) {
   } catch(err) {
       next(err);
   }
+
+  invCont.buildManagement = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const title = "Vehicle Management"
+    res.render("./inventory/management", {
+      title: title,
+      nav,
+      errors: null,
+    })
+  }
+  invCont.buildAddClassification = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const title = "Add New Classification"
+    res.render("./inventory/add-classification", {
+      title: title,
+      nav,
+      errors: null,
+    })
+  }
+
+  invCont.buildAddInventory = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const title = "Add New Vehicle"
+    let classificationList = await utilities.buildClassificationList();
+    res.render("./inventory/add-inventory", {
+      title: title,
+      nav,
+      classificationList,
+      errors: null,
+    })
+  }
+
+  invCont.buildByInventoryId501 = async function (req, res, next) {
+    next({status: 501, message: 'Sorry, no id was selected.'});
+    
+    let nav = await utilities.getNav()
+    res.render("errors/error", {
+      title: '501' || 'Server Error',
+      message,
+      nav,
+      errors: null,
+    })
+    }
 }
 
 module.exports = invCont

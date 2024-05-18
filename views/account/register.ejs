@@ -1,55 +1,28 @@
-<div class="container">
-    <!-- The Content Heading -->
-    <% if (title) { %>
-        <h1><%= title %></h1>
-        <% } else {
-          res.redirect('/')
-        } %>
-    
-    <%- messages() %>
-    <% if (errors) { %>
-        <ul class="notice">
-       <% errors.array().forEach(error => { %>
-         <li><%= error.msg %></li>
-      <%  }) %>
-       </ul>
-      <% } %>
-    
-    <!-- The Register View -->
-    <div class="form-container">
-        <form class="reg-acct-frm" action="/account/register" method = "post">
-            <div class="form-content">
-                <p class="fields-req">*** All fields are required. ***</p>
-                <div class="form-fields">
-                    <label for="account_firstname"><b>First name:</b></label>
-                    <input type="text" id="account_firstname" name="account_firstname" placeholder="First name" autofocus required value="<%= locals.account_firstname %>">
-                    <label for="account_lastname"><b>Last name:</b></label>
-                    <input type="text" id="account_lastname" name="account_lastname" placeholder="Last name" required value="<%= locals.account_lastname %>">
-                    <label for="account_email"><b>Email Address:</b></label>
-                    <input type="email" id="account_email" name="account_email" placeholder="youremail@email.com" required value="<%= locals.account_email %>">
-                    <label for="account_password"><b>Password:</b></label><br>
-                    <input type="password" id="account_password" name="account_password" placeholder="Enter your password" 
-                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-                    <button class="show-pwd-btn">Show password</button>
-                    <p class="pwd-text">(Passwords must be at least 12 characters and include one uppercase letter, one lowercase letter, one number, and one non-alphanumeric character.)</p>
-                    <button class="submit-btn" type="submit" name="register">Register</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <script>
-        // show or hide password
-        const pwdBtn = document.querySelector(".show-pwd-btn");
-        pwdBtn.addEventListener("click", function () {
-            const pwdInput = document.getElementById("account_password");
-            const pwdType = pwdInput.getAttribute("type");
-            if (pwdType === "password") {
-                pwdInput.setAttribute("type", "text");
-                pwdBtn.innerHTML = "Hide password";
-            } else {
-                pwdInput.setAttribute("type", "password");
-                pwdBtn.innerHTML = "Show password";
-            }
-        })
-    </script>
-</div>
+<% if (title) { %>
+    <h1><%= title %></h1>
+      <% } else {
+        res.redirect('/')
+      } %>
+  
+  <%- messages() %>
+  
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  
+  <form class="login-form" method="post" action="/account/register">
+    <fieldset>
+    <label class="top">First name* <input type="text" name="account_firstname" value="<%= locals.account_firstname %>" required id="firstname"></label>
+    <label class="top">Last name* <input type="text" name="account_lastname" value="<%= locals.account_lastname %>" required id="lastname"></label>              
+      <label class="top">Email* <input type="email" name="account_email" placeholder="someone@gmail.com" value="<%= locals.account_email %>" required id="email"
+          autocomplete="email"></label>
+      <label class="top">Password* <input type="password" name="account_password" required id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+          autocomplete="password"></label>
+      <p>Password must be at least 12 characters and include at least: 1 capital letter, 1 lowercase letter, 1 number, and 1 special character</p>    
+      <input type="submit" value="Register" class="submitBtn">
+    </fieldset>
+  </form>

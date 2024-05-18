@@ -1,12 +1,12 @@
-const utilities = require(".")
-const { body, validationResult } = require("express-validator")
-const validate = {}
-const accountModel = require("../models/account-model")
+const utilities = require(".");
+const { body, validationResult } = require("express-validator");
+const accountModel = require("../models/account-model");
+const validate = {};
 
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
-validate.registrationRules = () => {
+validate.registationRules = () => {
   return [
     // firstname is required and must be string
     body("account_firstname")
@@ -31,9 +31,11 @@ validate.registrationRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(account_email)
+        const emailExists = await accountModel.checkExistingEmail(
+          account_email
+        );
         if (emailExists) {
-          throw new Error("Email exists. Please log in or use different email")
+          throw new Error("Email exists. Please log in or use different email");
         }
       }),
 
@@ -49,34 +51,35 @@ validate.registrationRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements."),
-  ]
-}
+  ];
+};
 
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
-  let errors = []
-  errors = validationResult(req)
+  const { account_firstname, account_lastname, account_email } = req.body;
+  let errors = [];
+  errors = validationResult(req);
   if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res.render("account/register", {
+    let nav = await utilities.getNav();
+    // const view = utilities.buildRegistrationView();
+    res.render("account/registration", {
+      errors,
       title: "Registration",
       nav,
+      // view,
       account_firstname,
       account_lastname,
       account_email,
-      errors,
-    })
-    return
+    });
+    return;
   }
-  next()
-}
-
-/*  **********************************
- *  Login Data Validation Rules
- * ********************************* */
+  next();
+};
+/* ****************************
+ * Check data and return errors or continue to login
+ * *************************** */
 validate.loginRules = () => {
   return [
     // valid email is required and cannot already exist in the database
@@ -85,7 +88,12 @@ validate.loginRules = () => {
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
-
+    //   .custom(async (account_email) => {
+    //     const emailExists = await accountModel.checkExistingEmail(account_email)
+    //     if (emailExists) {
+    //       throw new Error("Email exists. Please log in or use different email")
+    //     }
+    //   })
     // password is required and must be strong password
     body("account_password")
       .trim()
@@ -98,27 +106,26 @@ validate.loginRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements."),
-  ]
-}
-
-/* ******************************
- * Check data and return errors or continue to registration
- * ***************************** */
+  ];
+};
 validate.checkLoginData = async (req, res, next) => {
-  const { account_email } = req.body
-  let errors = []
-  errors = validationResult(req)
+  const { account_email, account_password } = req.body;
+  let errors = [];
+  errors = validationResult(req);
   if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
+    let nav = await utilities.getNav();
+    // const view = utilities.buildLoginView();
     res.render("account/login", {
+      errors,
       title: "Login",
       nav,
+      // view,
       account_email,
-      errors,
-    })
-    return
+      account_password,
+    });
+    return;
   }
-  next()
-}
+  next();
+};
 
-module.exports = validate
+module.exports = validate;

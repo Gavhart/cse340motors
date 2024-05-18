@@ -3,22 +3,11 @@ const baseController = {}
 
 baseController.buildHome = async function(req, res){
   const nav = await utilities.getNav()
-  res.render("index", {title: "Home", nav})
+  req.flash("notice", "This is a flash message.")
+  res.render("index", {title: "Home", nav, errors: null,})
+  if (req.flash('notice').length) {
+    req.flash('notice').pop();
 }
-/* ***************************
- *  Build error handler Assignment 3 Task 3
- * ************************** */
-baseController.errorHandler = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  let title = 'Server Error'
-  let errImg = '/images/site/rick-roll.gif'
-  let message = 'Oh no! There was a crash. Maybe try a different route?';
-  res.render("errors/error", {
-      nav,
-      title,
-      message,
-      errImg
-  })
 }
 
 module.exports = baseController

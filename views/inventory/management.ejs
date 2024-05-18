@@ -1,11 +1,9 @@
 <% if (title) { %>
-    <h1 class="vehicle-title"><%= title %></h1>
-    <% } else { res.redirect('/') } %>
-    
-    <!-- messages -->
-    <%- messages() %>
-    
-    <!-- Errors -->
-    
-    <!-- Management view links -->
-    <%- managementView %>
+    <h1><%= title %></h1>
+    <% } else{
+        res.redirect("/") 
+    } %>
+
+<% messages() %>
+
+<%- links %>

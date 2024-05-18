@@ -1,53 +1,32 @@
-<div class="container">
-    <!-- The Content Heading -->
-    <% if (title) { %>
-        <h1><%= title %></h1>
-        <% } else {
-          res.redirect('/')
-        } %>
-    
-    <%- messages() %>
-    <% if (errors) { %>
-        <ul class="notice">
-       <% errors.array().forEach(error => { %>
-         <li><%= error.msg %></li>
-      <%  }) %>
-       </ul>
-      <% } %>
-    
-    <!-- The Login View -->
-    <div class="form-container">
-        <form class="login-frm" action="/account/login" method = "post">
-            <div class="form-content">
-                <div class="form-fields">
-                    <label for="account_email"><b>Email Address:</b></label>
-                    <input type="email" id="account_email" name="account_email" placeholder="youremail@email.com" autofocus required value="<%= locals.account_email %>">
-                    <label for="account_password"><b>Password:</b></label><br>
-                    <input type="password" id="account_password" name="account_password" placeholder="Enter your password" 
-                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-                    <button class="show-pwd-btn">Show password</button>
-                    <p class="pwd-text">(Passwords must be at least 12 characters and include one uppercase letter, one lowercase letter, one number, and one non-alphanumeric character.)</p>
-                    <button class="submit-btn" type="submit" name="login">LOGIN</button>
-                </div>
-                <div class="signup">
-                    <p>No account?  <span class="no-acct-signup"><a class="register-link" href="/account/register">Sign up!</a></span></p>
-                </div>
-            </div>
-        </form>
-    </div>
-    <script>
-        // show or hide password
-        const pwdBtn = document.querySelector(".show-pwd-btn");
-        pwdBtn.addEventListener("click", function () {
-            const pwdInput = document.getElementById("account_password");
-            const pwdType = pwdInput.getAttribute("type");
-            if (pwdType === "password") {
-                pwdInput.setAttribute("type", "text");
-                pwdBtn.innerHTML = "Hide password";
-            } else {
-                pwdInput.setAttribute("type", "password");
-                pwdBtn.innerHTML = "Show password";
-            }
-        })
-    </script>
-</div>
+<% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+  
+      <%- messages() %>
+  
+        <% if (errors) { %>
+          <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+  
+          <div class="login">
+            <h1>Login</h1>
+            <form>
+                <label for="email">Email*</label>
+                <input type="email" id="email" required>
+                <label for="password">Password*</label>
+                <input type="password" id="password" required>
+                <button type="submit" class="login_submit">Log In</button>
+                <a href="/reset-password" class="forgot-password-link">Forgot Password?</a>
+            </form>
+            <p class="login_pass_note">Password must include at least one letter, one number, and be at least 8 characters long.</p>
+            <a href="/signup" class="signup-link">Don't have an account? Sign up</a>
+        </div>
+        

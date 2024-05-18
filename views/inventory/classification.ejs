@@ -1,12 +1,9 @@
-<!-- Draw the title if provided, if not redirect to default page -->
-<% if (title) { %>
+<% if (title) {%>
     <h1><%= title %></h1>
-<% } else {
-    res.redirect('/')
-} %>
-
-<!-- Message Block to display if needed -->
-<%# messages() %>
-
-<!-- Inventory Items Display -->
-<%- grid %>
+    <% } else{ 
+        res.redirect("/")
+    }%>
+    
+    <%# messages() %>
+    
+    <%- grid %>
