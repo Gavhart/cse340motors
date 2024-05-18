@@ -12,12 +12,13 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-//const accountRoute = require("./routes/accountrouteroutes")
 const utilities = require("./utilities")
 const pool = require("./database")
 const bodyParser = require("body-parser")
 const session = require("express-session")
-const accountRoute = require("./routes/accountRoute")
+const accountRoute = require("./routes/accountroute")
+
+
 
 
 
@@ -73,10 +74,13 @@ app.use("/account/", utilities.handleErrors(accountRoute))
 app.use("/inv/", utilities.handleErrors(inventoryRoute))
 
 // Account routes
-app.use("/account", require("./routes/accountRoute"))
+app.use("/account", require("./routes/accountroute"))
 
 // Route to build login view
 //router.get("/login", utilities.handleErrors(accountController.buildLogin))
+
+app.use(express.static('public'));  // Serving static files
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
