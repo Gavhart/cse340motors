@@ -455,6 +455,85 @@ input[type="file"] {
   max-width: 75vw;
 }
 
+/* Client Account Pages - Focused on Login Page */
+.login {
+  width: 100%; /* Use 100% of the viewport width for smaller screens */
+  max-width: 400px; /* Maximum width of the form */
+  margin: 2rem auto; /* Centering the form horizontally and adding spacing from top */
+  padding: 20px; /* Padding around the content within the form */
+  background-color: #ffffff; /* Set background color to white */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12); /* Soft shadow for depth */
+  border-radius: 8px; /* Rounded corners for modern look */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login h1 {
+  font-size: 2rem; /* Larger font size for login title */
+  color: #333; /* Dark grey color for better visibility */
+  margin-bottom: 1rem; /* Space below the title */
+}
+
+.login form {
+  width: 100%; /* Form takes full width of the parent container */
+}
+
+.login label {
+  font-size: 1rem; /* Readable font size for labels */
+  color: #666; /* Lighter grey for text */
+  width: 100%; /* Full width to align with input fields */
+  margin-bottom: 0.5rem; /* Space below each label */
+}
+
+.login input {
+  font-size: 1rem; /* Sufficiently large font size for readability */
+  padding: 12px; /* Padding for easier interaction */
+  border: 1px solid #ccc; /* Subtle border styling */
+  border-radius: 4px; /* Rounded corners for inputs */
+  width: calc(100% - 24px); /* Width accounting for padding */
+}
+
+.login_submit {
+  background-color: #5c67f2; /* Consistent with other button styles in the app */
+  color: #ffffff; /* White text for contrast */
+  margin-top: 20px; /* Space above the button */
+  width: 100%; /* Full width button */
+  padding: 10px; /* Comfortable clickable area */
+  border: none; /* No border for button */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Cursor indicates clickable */
+}
+
+.login_submit:hover {
+  background-color: #5058e5; /* Slightly darker on hover for interactive feedback */
+}
+
+.login_pass_note {
+  font-size: 0.8rem; /* Smaller font size for supplementary text */
+  color: #606060; /* Dark gray for readability */
+  text-align: left; /* Align text to left for standard reading */
+  margin-top: 10px; /* Space above the note */
+}
+.login a {
+  color: #5c67f2; /* Sets the link color to match your button color for consistency */
+  display: block; /* Makes the link take up the full width of its container */
+  text-align: center; /* Centers the text */
+  margin-top: 10px; /* Adds space above the link */
+  text-decoration: underline; /* Underlines the link to make it clear it's clickable */
+}
+
+.login .signup-link {
+  margin-top: 20px; /* Adds more space above the sign-up link for separation */
+  font-weight: bold; /* Makes the sign-up link bold to stand out */
+}
+
+.login .forgot-password-link {
+  font-size: 0.9rem; /* Smaller font size for the forgot password link */
+}
+
+
+
 
 
 

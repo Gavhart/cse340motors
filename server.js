@@ -12,12 +12,12 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-// const accountRoute = require("./routes/accountrouteroutes")
+//const accountRoute = require("./routes/accountrouteroutes")
 const utilities = require("./utilities")
-// const session = require("express-session")
 const pool = require("./database")
 const bodyParser = require("body-parser")
 const session = require("express-session")
+const accountRoute = require("./routes/accountRoute")
 
 
 
@@ -67,10 +67,16 @@ app.use(utilities.handleErrors(static))
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Account login
-//app.use("/account/", utilities.handleErrors(accountRoute))
+app.use("/account/", utilities.handleErrors(accountRoute))
 
 // Inventory route
 app.use("/inv/", utilities.handleErrors(inventoryRoute))
+
+// Account routes
+app.use("/account", require("./routes/accountRoute"))
+
+// Route to build login view
+//router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
