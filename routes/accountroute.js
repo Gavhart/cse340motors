@@ -23,11 +23,7 @@ router.get("/register", utilities.handleErrors(accountController.buildRegistrati
 /* ***************************
 * Process the registration data
 * ************************** */
-router.post(
-  "/register",
-  regValidate.registationRules(),
-  regValidate.checkRegData,
-  utilities.handleErrors(accountController.registerAccount)
+router.post("/register",regValidate.registationRules(),regValidate.checkRegData,utilities.handleErrors(accountController.registerAccount)
 )
 
 // Process the login attempt
