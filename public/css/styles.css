@@ -51,7 +51,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1;
-  size: 7rem;
+  height: 7rem;
 }
 nav ul {
   display: flex;
