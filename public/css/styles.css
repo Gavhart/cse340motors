@@ -598,6 +598,86 @@ input[type="file"] {
   line-height: 1.4; /* Line height for better readability */
 }
 
+/* Styling the link to the Register page */
+
+/* Container for the form */
+.container .form-container {
+  background-color: #fff; /* White background for a clean look */
+  padding: 20px; /* Adequate padding around the form content */
+  border-radius: 8px; /* Rounded corners for a modern appearance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the form off the page */
+  max-width: 500px; /* Restrict maximum width for better control on larger screens */
+  margin: 2rem auto; /* Centering the form container and providing vertical spacing */
+}
+
+/* General styling for headings inside the container */
+.container h1 {
+  color: #333; /* Dark grey for clear readability */
+  text-align: center; /* Center-aligned headings for consistency */
+  margin-bottom: 20px; /* Space below the heading to separate from form content */
+}
+
+/* Error and message display styling */
+.container .notice,
+.container .messages {
+  background-color: #fce4ec; /* Light pink background for error messages */
+  color: #d32f2f; /* Red text to signify errors */
+  padding: 10px; /* Padding around the text for readability */
+  border-radius: 4px; /* Rounded corners for visual consistency */
+  margin-bottom: 20px; /* Space below the message box */
+  list-style: none; /* Remove list styling for error lists */
+  text-align: center; /* Center-align text for better presentation */
+}
+
+/* Labels and input fields */
+.container .form-container label {
+  display: block; /* Full width labels */
+  margin-bottom: 5px; /* Space below each label */
+  color: #333; /* Consistent text color for labels */
+}
+
+.container .form-container input[type="text"],
+.container .form-container input[type="email"],
+.container .form-container input[type="password"] {
+  width: 100%; /* Full width inputs for form consistency */
+  padding: 8px; /* Comfortable padding inside inputs */
+  margin-bottom: 15px; /* Space below each input */
+  border: 1px solid #ccc; /* Subtle border for inputs */
+  border-radius: 4px; /* Rounded edges for inputs */
+}
+
+/* Styling for buttons to match the login form */
+.container .form-container .submit-btn,
+.container .form-container .show-pwd-btn {
+  background-color: #5c67f2; /* Consistent blue background for all buttons */
+  color: white; /* White text for contrast */
+  padding: 10px; /* Padding for clickability */
+  border: none; /* No borders for a cleaner look */
+  border-radius: 4px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor to indicate interactiveness */
+  margin-top: 10px; /* Space above buttons */
+  width: 100%; /* Full width buttons for a modern look */
+}
+
+.container .form-container .submit-btn:hover,
+.container .form-container .show-pwd-btn:hover {
+  background-color: #5058e5; /* Slightly darker on hover for a dynamic effect */
+}
+
+.container .form-container .show-pwd-btn {
+  background: none; /* Override for the show password button to only text style */
+  color: #337ab7; /* Blue text for differentiation */
+  padding: 0; /* Remove padding */
+  text-decoration: underline; /* Underline to indicate it's clickable */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .container .form-container {
+      padding: 10px; /* Lesser padding for smaller screens */
+  }
+}
+
 
 
 
