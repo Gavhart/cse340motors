@@ -1,46 +1,42 @@
+<% 
+function formatNumber(num) {
+  return num.toLocaleString();
+}
+%>
 
 <!-- Dynamically building the view for individual vehicles -->
-<link href= "/public/css/styles.css" rel="stylesheet" type="text/css" />
-
+<link href="/public/css/styles.css" rel="stylesheet" type="text/css" />
 
 <!-- Content Heading for classification view -->
 <% if (title) { %>
   <h1 id="title"><%= title %></h1>
-    <% } else {
-      res.redirect('')
-    } %>
-    
+<% } else {
+  res.redirect('/'); // Ensure you handle redirection in server-side code ideally
+} %>
 
 <!-- Message block for notices and error handling -->
 <% if (message) { %>
-    <p class="notice"><%= message %></p>
+  <p class="notice"><%= message %></p>
 <% } %>
 
-<!-- Vehicles Display Code Block-->
-
+<!-- Vehicles Display Code Block -->
 <ul id="vehicle-display">
   <div class="vehicleImages">
-    <img src="<%= data.inv_image %>" alt = "Image of <%= data.inv_make %> <%= data.inv_model %> on CSE Motors" class = "vehicleImage"/>
+    <img src="<%= data.inv_image %>" alt="Image of <%= data.inv_make %> <%= data.inv_model %> on CSE Motors" class="vehicleImage"/>
   </div>
 
-  <h2><%=data.inv_make + " " + data.inv_model%> Details</h2>
-
+  <h2><%= data.inv_make + " " + data.inv_model %> Details</h2>
   <hr/>
 
-  <h4 style="font-size: 29px;">Price: $<%= data.inv_price %></h4>
-
+  <h4 style="font-size: 29px;">Price: $<%= formatNumber(data.inv_price) %></h4>
   <h4 style="font-size: 29px;">Description:</h4>
-  <p><%=data.inv_description%></p>
-
+  <p><%= data.inv_description %></p>
   <hr/>
 
   <h4 style="font-size: 29px;">Color:</h4>
-  <p><%=data.inv_color%></p>
-
+  <p><%= data.inv_color %></p>
   <hr/>
 
-  <h4 style="font-size: 29px;">Miles:</h4>
-  <p><%=data.inv_miles%></p>
-
+  <h4 style="font-size: 29px;">Miles: <%= formatNumber(data.inv_miles) %></p>
   <hr/>
 </ul>
