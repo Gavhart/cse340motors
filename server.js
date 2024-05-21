@@ -5,24 +5,26 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")
-const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
+const session = require('express-session')
+const pool = require('./database/')
+const express = require('express')
+const expressLayouts = require('express-ejs-layouts')
+const env = require('dotenv').config()
 const app = express()
-const static = require("./routes/static")
-const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities")
-const pool = require("./database")
+const static = require('./routes/static')
+const baseController = require('./controllers/baseController')
+const inventoryRoute = require('./routes/inventoryRoute')
+const accountRoute = require('./routes/accountRoute')
+const utilities = require('./utilities/')
 const bodyParser = require("body-parser")
-const session = require("express-session")
-const accountRoute = require("./routes/accountroute")
-const cookieParser = require("cookie-parser")
+const cookieParser = require('cookie-parser')
 
-
-
-
-
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set('view engine', 'ejs')
+app.use(expressLayouts)
+app.set('layout', './layouts/layout')
 
 /* ***********************
  * Middleware
@@ -38,78 +40,56 @@ app.use(session({
   name: 'sessionId',
 }))
 
-// Express Messages Middleware
+
 app.use(require('connect-flash')())
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-
-app.use(cookieParser())
-
-
-
-
-// Body Parser 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
 
 /* ***********************
  * Routes
  *************************/
-// app.use(static)
-app.use(utilities.handleErrors(static))
-
-// Index (home page) route
-app.get("/", utilities.handleErrors(baseController.buildHome))
-
-// Account login
-app.use("/account/", utilities.handleErrors(accountRoute))
-
-// Inventory route
-app.use("/inv/", utilities.handleErrors(inventoryRoute))
-
-// Account routes
-app.use("/account", require("./routes/accountroute"))
-
-// Route to build login view
-//router.get("/login", utilities.handleErrors(accountController.buildLogin))
-
-app.use(express.static('public'));  // Serving static files
+app.use(static)
+app.get('/', utilities.handleErrors(baseController.buildHome))
+// Inventory routes
+app.use('/inv', utilities.handleErrors(inventoryRoute))
+app.use('/account', utilities.handleErrors(accountRoute))
 
 
-// File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
-
-
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404) {
-    message = err.message
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+
+  let message;
+  if (err.status === 404) {
+    message = err.message;
+  } else if (err instanceof TypeError && err.message.includes("Cannot read properties of undefined")) {
+    message = 'The requested item does not exist or is out of range.';
   } else {
-    message = 'Oh no! There was a crash. Maybe try a different route?'
+    message = 'Oh no! There was a crash. Maybe try a different route?';
   }
+
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    // message: err.message,
     message,
     nav
-  })
-})
+  });
+});
+
+
 
 /* ***********************
  * Local Server Information

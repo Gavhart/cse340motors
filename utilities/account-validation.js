@@ -1,4 +1,4 @@
-const utilities = require("../utilities");
+const utilities = require('.')
 const { body, validationResult } = require("express-validator");
 const accountModel = require("../models/account-model");
 const validate = {};
@@ -67,9 +67,13 @@ validate.loginRules = () => {
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail()
-      .withMessage("A valid email is required."),
-
+      .withMessage("A valid email is required.")
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(account_email)
+        if (!emailExists) {
+          throw new Error("Email not associated with an account. Please use a different email, or register to create an account.")
+        }
+      }),
     body("account_password")
       .trim()
       .notEmpty()
@@ -80,9 +84,9 @@ validate.loginRules = () => {
         minNumbers: 1,
         minSymbols: 1,
       })
-      .withMessage("Password does not meet requirements."),
-  ];
-};
+      .withMessage("Password does not meet requirements.")
+  ]
+}
 
 /* Check login data and return errors or continue */
 validate.checkLoginData = async (req, res, next) => {
