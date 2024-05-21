@@ -5,8 +5,9 @@ const accountController = require("../controllers/accountController");
 const regValidate = require('../utilities/account-validation');
 
 
+
 // Deliver login and registration views
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccount))
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegistration));
 
