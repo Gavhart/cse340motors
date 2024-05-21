@@ -550,68 +550,76 @@ input[type="file"] {
 /* *****************************
 * Register Page
 *******************************/
-/* Basic styling for the form */
-.login-form {
-  max-width: 500px; /* Limit the width of the form */
-  margin: 2rem auto; /* Center the form horizontally and add vertical spacing */
-  padding: 20px; /* Padding inside the form */
-  background-color: #fff; /* White background */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  font-family: Arial, sans-serif; /* Font styling */
+/* Container around the form to ensure consistency in appearance */
+.loginForm {
+  max-width: 400px; /* Restricts the form's width for better focus */
+  margin: 50px auto; /* Centers the form vertically and horizontally */
+  padding: 30px; /* Ample padding for aesthetic spacing */
+  background-color: #ffffff; /* Clean white background */
+  border: 1px solid #e1e1e1; /* Light border for subtle definition */
+  border-radius: 10px; /* Smooth, rounded corners for a softer look */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* Styling labels for better readability */
-.login-form label {
-  display: block; /* Make labels block for full width */
-  margin-bottom: 10px; /* Space below each label */
-  color: #333; /* Dark gray color for text */
-  font-size: 1rem; /* Readable font size */
+/* Styles for labels to enhance readability */
+.loginForm label {
+  display: block; /* Block display to manage layout */
+  margin-bottom: 5px; /* Small gap below each label for clarity */
+  font-size: 14px; /* Optimal font size for readability */
+  color: #333; /* Dark grey for contrast against the background */
 }
 
-/* Styling inputs for a consistent look */
-.login-form input[type="text"],
-.login-form input[type="email"],
-.login-form input[type="password"] {
+/* Improved input styles for interactivity and accessibility */
+.loginForm input[type="email"],
+.loginForm input[type="password"] {
   width: calc(100% - 20px); /* Full width minus padding */
-  padding: 10px; /* Padding inside input fields */
-  margin-bottom: 15px; /* Space below each input */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 4px; /* Rounded corners for inputs */
+  padding: 10px; /* Adequate padding for text entry */
+  margin-bottom: 20px; /* Separates inputs for clarity */
+  border: 1px solid #ccc; /* Subtle border color */
+  border-radius: 5px; /* Matches the form's rounded aesthetic */
+  transition: border-color 0.3s; /* Smooth transition for interactive elements */
 }
 
-/* Highlighting input fields on focus to improve user experience */
-.login-form input[type="text"]:focus,
-.login-form input[type="email"]:focus,
-.login-form input[type="password"]:focus {
-  border-color: #5c67f2; /* Change border color to blue when focused */
-  outline: none; /* Remove default focus outline */
+/* Highlighting inputs on focus enhances user experience */
+.loginForm input[type="email"]:focus,
+.loginForm input[type="password"]:focus {
+  border-color: #5c67f2; /* Highlighted border color when focused */
+  outline: none; /* Removes the default focus outline */
 }
 
-/* Styling the submission button to stand out */
-.submitBtn {
-  width: 100%; /* Full width button */
-  padding: 12px; /* Padding for a larger clickable area */
-  background-color: #5c67f2; /* Blue background */
-  color: white; /* White text */
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 1rem; /* Font size */
+/* Button styles for consistency and attractiveness */
+.loginForm button {
+  width: 100%; /* Ensures the button fills the container */
+  padding: 12px 20px; /* Sufficient padding for ease of clicking */
+  background-color: #5c67f2; /* Pleasant, consistent blue */
+  color: white; /* White text for high contrast readability */
+  font-weight: bold; /* Makes the button text stand out */
+  border: none; /* No border for a clean appearance */
+  border-radius: 5px; /* Consistent with input field styling */
+  cursor: pointer; /* Indicates the button is clickable */
+  transition: background-color 0.2s; /* Smooth background color transition on hover */
 }
 
-/* Hover effect for the button for interactivity */
-.submitBtn:hover {
-  background-color: #5058e5; /* A slightly darker blue on hover */
+/* Interactive elements feel more dynamic with hover effects */
+.loginForm button:hover {
+  background-color: #5058e5; /* Slightly darker blue on hover for visual feedback */
 }
 
-/* Styling the password requirement note for clarity */
-.login-form p {
-  font-size: 0.8rem; /* Smaller font size */
-  color: #666; /* Medium gray */
-  padding: 5px 0; /* Padding around the text */
-  line-height: 1.4; /* Line height for better readability */
+/* Registration link styling for aesthetic consistency */
+#loginP {
+  text-align: center; /* Centers the text for balance */
+  font-size: 14px; /* Keeps font size consistent with form labels */
 }
+
+#loginP a {
+  color: #5c67f2; /* Blue color to tie into the button's color */
+  text-decoration: none; /* No underline to keep it clean */
+}
+
+#loginP a:hover {
+  text-decoration: underline; /* Underline on hover for a traditional hyperlink feel */
+}
+
 
 /* Styling the link to the Register page */
 

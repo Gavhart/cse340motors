@@ -73,46 +73,46 @@ try {
 }
 
 /* ****************************************
- *  Process login request
- * ************************************ */
+*  Process login request
+* ************************************ */
 accountCont.accountLogin = async function(req, res) {
-  let nav = await utilities.getNav()
-  const { account_email, account_password } = req.body
-  const accountData = await accountModel.getAccountByEmail(account_email)
-  if ((!account_email) || (!account_password) || (!accountData)) {
-    req.flash("notice", "Please check your credentials and try again.")
-    res.status(400).render("account/login", {
-      title: "Login",
-      nav,
-      errors: null,
-      account_email,
-    })
-    return
-  }
-  try {
-    if (await bcrypt.compare(account_password, accountData.account_password))
-    {
-      delete accountData.account_password
-      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-      if(process.env.NODE_ENV === 'development')
-      {
-        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-      } else {
-          res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
-      }
-      return res.redirect("/account")
-    } else {
-      req.flash("notice", "Please check your credentials and try again.");
-      res.status(400).render("./account/login", {
-        title: "Login",
-        nav,
-        errors: null,
-        account_email,
-      });
-    }
-  } catch (error) {
-    return new Error('Access Forbidden')
-  }
+ let nav = await utilities.getNav()
+ const { account_email, account_password } = req.body
+ const accountData = await accountModel.getAccountByEmail(account_email)
+ if ((!account_email) || (!account_password) || (!accountData)) {
+   req.flash("notice", "Please check your credentials and try again.")
+   res.status(400).render("account/login", {
+     title: "Login",
+     nav,
+     errors: null,
+     account_email,
+   })
+   return
+ }
+ try {
+   if (await bcrypt.compare(account_password, accountData.account_password))
+   {
+     delete accountData.account_password
+     const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+     if(process.env.NODE_ENV === 'development')
+     {
+       res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+     } else {
+         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+     }
+     return res.redirect("/account")
+   } else {
+     req.flash("notice", "Please check your credentials and try again.");
+     res.status(400).render("./account/login", {
+       title: "Login",
+       nav,
+       errors: null,
+       account_email,
+     });
+   }
+ } catch (error) {
+   return new Error('Access Forbidden')
+ }
 }
 
 /* ****************************************
@@ -173,40 +173,6 @@ accountCont.accountUpdate = async function(req, res) {
       });
     };
   }; 
-
-  /* ****************************************
- *  Process Account Update
- * ************************************ */
-accountCont.accountUpdate = async function(req, res) {
-    let nav = await utilities.getNav()
-    const { account_id, account_firstname, account_lastname, account_email } = req.body
-    const updateResult = await accountModel.updateAccount(
-      account_id,
-      account_firstname,
-      account_lastname,
-      account_email
-    );
-    if (updateResult) {
-      req.flash("message", "Account successfully Updated.");
-      const accessToken = jwt.sign(updateResult, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
-      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
-      res.redirect("/account/");
-      } else {
-        req.flash("notice", "Sorry. The account update failed.");
-        res.status(501).render("./account/update", {
-          title: "Update Account",
-          nav,
-          errors: null,
-          account_id,
-          account_firstname,
-          account_lastname,
-          account_email,
-        });
-      };
-    }; 
-
-
-
 
 
 module.exports = accountCont;

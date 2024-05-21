@@ -1,34 +1,28 @@
-<% if (title) { %>
-    <h1>
-      <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-  
-      <%- messages() %>
-  
-        <% if (errors) { %>
-          <ul class="notice">
-            <% errors.array().forEach(error=> { %>
-              <li>
-                <%= error.msg %>
-              </li>
-              <% }) %>
-          </ul>
-          <% } %>
-  
-          <div class="login">
-            <h1>Login</h1>
-            <form>
-                <label for="email">Email*</label>
-                <input type="email" id="email" required>
-                <label for="password">Password*</label>
-                <input type="password" id="password" required>
-                <button type="submit" class="login_submit">Log In</button>
-                <a href="/reset-password" class="forgot-password-link">Forgot Password?</a>
-            </form>
-            <p class="login_pass_note">Password must include at least one letter, one number, and be at least 8 characters long.</p>
-            <p>No account?  <span class="no-acct-signup"><a class="register-link" href="/account/register">Sign up!</a></span></p>
-                </div>
+<!-- login.ejs -->
+<h1><%= title %></h1>
 
-        </div>
-        
+<!-- Display flash messages if any -->
+<%- messages() %>
+
+<!-- Login form -->
+<form class="loginForm" action="/account/login" method="POST">
+    <div>
+        <label for="account_email">Email:</label>
+        <input type="email" id="account_email" name="account_email" 
+               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+               placeholder="chris.smith@example.com" 
+               title="Please enter a valid email address (e.g., chris.smith@example.com)" 
+               required>
+    </div>
+    <div>
+        <label for="account_password">Password:</label>
+        <input type="password" id="account_password" name="account_password"
+            pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}"
+            title="Password must be at least 12 characters long and contain at least 1 capital letter, 1 number, and 1 special character."
+            required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<!-- Link to registration view -->
+<p id="loginP">Don't have an account? <a href="/account/register">Register here</a>.</p>

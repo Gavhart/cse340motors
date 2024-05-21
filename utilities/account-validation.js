@@ -1,48 +1,37 @@
-const utilities = require(".");
+const utilities = require("../utilities");
 const { body, validationResult } = require("express-validator");
 const accountModel = require("../models/account-model");
 const validate = {};
 
-/*  **********************************
- *  Registration Data Validation Rules
- * ********************************* */
-validate.registationRules = () => {
+/* Registration Data Validation Rules */
+validate.registrationRules = () => {
   return [
-    // firstname is required and must be string
     body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a first name."), // on error this message is sent.
+      .withMessage("Please provide a first name."),
 
-    // lastname is required and must be string
     body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
-      .isLength({ min: 2 })
-      .withMessage("Please provide a last name."), // on error this message is sent.
+      .withMessage("Please provide a last name."),
 
-    // valid email is required and cannot already exist in the database
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail()
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(
-          account_email
-        );
+        const emailExists = await accountModel.checkExistingEmail(account_email);
         if (emailExists) {
-          throw new Error("Email exists. Please log in or use different email");
+          throw new Error("Email already exists. Please log in or use a different email.");
         }
       }),
 
-    // password is required and must be strong password
     body("account_password")
       .trim()
-      .notEmpty()
       .isStrongPassword({
         minLength: 12,
         minLowercase: 1,
@@ -54,47 +43,33 @@ validate.registationRules = () => {
   ];
 };
 
-/* ******************************
- * Check data and return errors or continue to registration
- * ***************************** */
+/* Check registration data and return errors or continue */
 validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body;
-  let errors = [];
-  errors = validationResult(req);
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildRegistrationView();
-    res.render("account/registration", {
-      errors,
+    res.render("account/register", {
+      errors: errors.array(),
       title: "Registration",
       nav,
-      // view,
-      account_firstname,
-      account_lastname,
-      account_email,
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email,
     });
     return;
   }
   next();
 };
-/* ****************************
- * Check data and return errors or continue to login
- * *************************** */
+
+/* Login Data Validation Rules */
 validate.loginRules = () => {
   return [
-    // valid email is required and cannot already exist in the database
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail()
       .withMessage("A valid email is required."),
-    //   .custom(async (account_email) => {
-    //     const emailExists = await accountModel.checkExistingEmail(account_email)
-    //     if (emailExists) {
-    //       throw new Error("Email exists. Please log in or use different email")
-    //     }
-    //   })
-    // password is required and must be strong password
+
     body("account_password")
       .trim()
       .notEmpty()
@@ -108,20 +83,17 @@ validate.loginRules = () => {
       .withMessage("Password does not meet requirements."),
   ];
 };
+
+/* Check login data and return errors or continue */
 validate.checkLoginData = async (req, res, next) => {
-  const { account_email, account_password } = req.body;
-  let errors = [];
-  errors = validationResult(req);
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildLoginView();
     res.render("account/login", {
-      errors,
+      errors: errors.array(),
       title: "Login",
       nav,
-      // view,
-      account_email,
-      account_password,
+      account_email: req.body.account_email,
     });
     return;
   }
