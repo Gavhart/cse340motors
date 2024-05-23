@@ -78,10 +78,11 @@ try {
 /* ****************************************
 *  Process login request
 * ************************************ */
-async function accountLogin(req, res) {
+accountCont.accountLogin = async function(req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
+  console.log(accountData + "accountController")
   if (!accountData) {
    req.flash("notice", "Please check your credentials and try again.")
    res.status(400).render("account/login", {
@@ -89,6 +90,7 @@ async function accountLogin(req, res) {
     nav,
     errors: null,
     account_email,
+  
    })
   return
   }
@@ -111,11 +113,13 @@ async function accountLogin(req, res) {
 /* ****************************************
 *  Deliver account management view
 * *************************************** */
-accountCont.buildAcctMgmt = async function(req, res, next) {
+accountCont.buildManagement = async function(req, res, next) {
   let nav = await utilities.getNav()
   res.render("./account/management", {
     title: "Account Management", nav, errors: null});
 };
+
+
 
 /* ****************************************
 *  Build Account Update
@@ -168,4 +172,4 @@ accountCont.accountUpdate = async function(req, res) {
   }; 
 
 
-module.exports = accountCont, jwt, bcrypt, utilities, accountModel, process.env.ACCESS_TOKEN_SECRET, validate, accountLogin;
+module.exports = accountCont;

@@ -98,6 +98,7 @@ Util.checkJWTToken = (req, res, next) => {
       res.clearCookie("jwt")
       return res.redirect("/account/login")
      }
+     console.log(accountData)
      res.locals.accountData = accountData
      res.locals.loggedin = 1
      next()
@@ -121,6 +122,6 @@ Util.checkJWTToken = (req, res, next) => {
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next) 
 
 module.exports = Util

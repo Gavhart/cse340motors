@@ -58,8 +58,8 @@ app.use(utilities.checkJWTToken)
 app.use(static)
 app.get('/', utilities.handleErrors(baseController.buildHome))
 // Inventory routes
-app.use('/inv', utilities.handleErrors(inventoryRoute))
-app.use('/account', utilities.handleErrors(accountRoute))
+app.use('/inv', inventoryRoute)
+app.use('/account', accountRoute)
 
 
 app.use(async (req, res, next) => {
@@ -72,13 +72,14 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
-
+  console.error(err);
   let message;
   if (err.status === 404) {
     message = err.message;
   } else if (err instanceof TypeError && err.message.includes("Cannot read properties of undefined")) {
     message = 'The requested item does not exist or is out of range.';
   } else {
+    
     message = 'Oh no! There was a crash. Maybe try a different route?';
   }
 
