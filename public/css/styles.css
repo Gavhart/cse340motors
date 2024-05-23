@@ -700,6 +700,64 @@ input[type="file"] {
       padding: 10px; /* Lesser padding for smaller screens */
   }
 }
+/* Specific styles for the Account Management View */
+.acctMgmtMenu {
+  background-color: #f4f4f4; /* Light grey background for visibility */
+  padding: 20px; /* Padding for spacing around content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  margin: 20px 0; /* Margin for separation from other elements */
+}
+
+.acctMgmtMenu h2 {
+  color: #333; /* Dark grey for headlines */
+  margin-bottom: 10px; /* Space below the headline */
+}
+
+.acctMgmtMenu p {
+  color: #666; /* Medium grey for paragraph text */
+  font-size: 16px; /* Adequate readability */
+  line-height: 1.5; /* Space between lines */
+  margin-bottom: 15px; /* Space below each paragraph */
+}
+
+.acctMgmtMenu a {
+  color: #0056b3; /* Standard link color */
+  text-decoration: none; /* Removes underline */
+}
+
+.acctMgmtMenu a:hover {
+  text-decoration: underline; /* Adds underline on hover for better UX */
+}
+
+.notice {
+  list-style-type: none; /* Removes bullets from the list */
+  padding: 0; /* Removes padding */
+  color: #c00; /* Red color for error messages */
+}
+
+.notice li {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+.invMgmt-h3 {
+  color: #333; /* Dark grey for subheadings */
+  margin-top: 20px; /* Space above subheading */
+}
+
+.manageInv {
+  margin-bottom: 20px; /* Space below the manage inventory link */
+}
+
+/* Utility classes for specific spacing */
+.ml-15px {
+  margin-left: 15px;
+}
+
+.mb-15px {
+  margin-bottom: 15px;
+}
+
 
 
 
