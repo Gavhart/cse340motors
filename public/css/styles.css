@@ -758,6 +758,175 @@ input[type="file"] {
   margin-bottom: 15px;
 }
 
+/* Account Update Page Specific Styles */
+.form-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-fields label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.form-fields input[type="text"],
+.form-fields input[type="email"],
+.form-fields input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-btn,
+.submit-btn {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover,
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.update-btn[disabled],
+.update-btn[disabled]:hover,
+.submit-btn[disabled],
+.submit-btn[disabled]:hover {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.show-pwd-btn {
+  background: none;
+  border: none;
+  color: #007BFF;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.notice {
+  color: #d9534f;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.pwd-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Specific page title styling */
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Utility classes */
+.mt-10px {
+  margin-top: 10px;
+}
+
+/* Account Management View Specific Styles */
+.acctMgmtMenu {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.acctMgmtMenu h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.login-successful-msg {
+  font-size: 16px;
+  color: #27ae60;
+  margin-bottom: 15px;
+}
+
+.editAcctInfo a,
+.manageInv a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.editAcctInfo,
+.manageInv {
+  margin-bottom: 10px;
+}
+
+.invMgmt-h3 {
+  font-size: 20px;
+  color: #8e44ad;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.notice {
+  list-style: none;
+  padding: 15px;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  color: #a94442;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.notice li {
+  margin: 5px 0;
+}
+
+/* Utility classes */
+.ml-15px {
+  margin-left: 15px;
+}
+
+.mb-15px {
+  margin-bottom: 15px;
+}
+
+h1 {
+  text-align: center;
+  color: #34495e;
+}
 
 
 

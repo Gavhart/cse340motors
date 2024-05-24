@@ -11,6 +11,7 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegistration));
 
+
 // Process the registration and login data
 router.post("/register",
   regValidate.registrationRules(), 
@@ -23,6 +24,24 @@ router.post("/login",
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
 );
+
+// Account Update View
+router.get("/update/:account_id", utilities.handleErrors(accountController.buildAcctUpdate))
+
+// Route to update user Account details
+router.post("/update/acct",
+    regValidate.acctUpdateRules(),
+    regValidate.checkAcctUpdate,
+    utilities.handleErrors(accountController.accountUpdate))
+
+// Route to change a user's password
+router.post("/update/pwd",
+    regValidate.pwdUpdateRules(),
+    regValidate.checkPwdUpdate,
+    utilities.handleErrors(accountController.passwordUpdate))
+
+// Logout
+router.get("/logout", utilities.handleErrors(accountController.logout));
 
 
 

@@ -4,7 +4,7 @@ const accountModel = require("../models/account-model")
 const utilities = require("../utilities/")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const validate = require('../utilities/account-validation')
+//const validate = require('../utilities/account-validation')
 
 
 
@@ -222,6 +222,42 @@ accountCont.logout = async function(req, res, next) {
   res.clearCookie("jwt");
   // req.flash("message", "You're logged out.");
   res.redirect("/");
+};
+
+/* ****************************************
+* logout Process
+* *************************************** */
+accountCont.logout = async function(req, res, next) {
+  res.clearCookie("sessionId");
+  res.clearCookie("jwt");
+  req.flash("message", "You're logged out.");
+  res.redirect("/");
+};
+
+/* ****************************************
+*  Process Account Deletion
+* *************************************** */
+accountCont.accountDelete = async function(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id } = req.body
+  const deleteResult = await accountModel.deleteAccount(account_id)
+  if (deleteResult) {
+    req.flash("message", "Account successfully deleted.")
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the account deletion failed.")
+    res.status(501).render("./account/management", {
+      title: "Account Management", nav, errors: null});
+  }
+}
+
+/* ****************************************
+*  Deliver Account Management View
+* *************************************** */
+accountCont.buildAcctMgmt = async function(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./account/management", {
+    title: "Account Management", nav, errors: null});
 };
 
 
